@@ -1,0 +1,76 @@
+	/*左侧边*/
+	/*let a = document.getElementsByClassName('ceban')[0];
+	let b = a.getElementsByTagName('li');
+	let js = document.getElementsByClassName('js');
+	for(let i = 0 ; i < b.length ; i++){
+		b[i].onmouseover = function(){
+			js[i].style.display = 'block';	
+		}
+		b[i].onmouseout = function(){
+			js[i].style.display = 'none';	
+		}
+	}*/
+
+	/*鼠标移入变换*/
+    let ban = document.getElementsByClassName('eiyo')[0];
+    let banl = ban.getElementsByTagName('li');
+	let lefts = document.getElementsByClassName('banner-rleft')[0];
+	let rights = document.getElementsByClassName('banner-rright')[0];
+    let dian = document.getElementsByClassName('banner-bottom')[0];
+    let dianl = dian.getElementsByTagName('li');
+	let banner = document.getElementsByClassName('banner-right')[0];
+	for(let i = 0 ; i < dianl.length ; i++){
+		dianl[i].onclick = function(){
+			for(let j = 0 ; j < banl.length ; j++){
+				banl[j].style.display = 'none';
+				dianl[j].style.background = 'pink';
+			}
+			    banl[i].style.display = 'block';
+			    dianl[i].style.background = 'red';
+			    num = i;
+		}	
+	}
+
+	/*自动轮播*/
+	let t = setInterval(move,1000);
+	let num = 0;
+	function move(){
+		num++;
+		if(num == banl.length){
+			num = 0;
+		}
+		for(let i = 0 ; i < banl.length ; i++){
+			dianl[i].style.background = 'pink';
+			dianl[num].style.background = 'red';
+		    banl[i].style.display = 'none';
+			banl[num].style.display = 'block';
+		}
+	}
+	function movee(){
+		num--;
+		if(num < 0){
+			num = banl.length-1;
+		}
+		for(let i = 0 ; i < banl.length ; i++){
+			dianl[i].style.background = 'pink';
+			dianl[num].style.background = 'red';
+		    banl[i].style.display = 'none';
+			banl[num].style.display = 'block';
+		}
+	}
+
+	/*鼠标移入*/
+	banner.onmouseover = function(){
+		clearInterval(t);
+	}
+	banner.onmouseout = function(){
+		t = setInterval(move,1000);
+	}
+
+	/*点击的两个前进后退*/
+	lefts.onclick = function(){
+		movee();
+	}
+	rights.onclick = function(){
+		move();
+	}
